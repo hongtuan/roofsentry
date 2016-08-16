@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  script(src='/javascripts/map-funs.js')
+  script(async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyACXZwCraYGZB_15hN6Ml1UmYAKDLHTBik&libraries=geometry,places,drawing&signed_in=true&callback=initMap')
+  .container-fluid
+    .row
+        .col-md-12.text-center
+            h2 #{title}
+        .col-md-2(role='navigation')
+            span.tblabel drawGrid:
+            span.uif
+              input(type='checkbox' id='dg' name='dg' value='1' checked onclick='swithGrid()')
+            br
+            span.tblabel uint:
+            span.uif
+              input(type='radio' id='du' name='du' value='ft' checked onclick='swUnit()')
+              span ft
+              input(type='radio' id='du' name='du' value='m' onclick='swUnit()')
+              span m
+            br
+            span.tblabel weOffset:
+            span.uif
+              input.dut(type='text' id='weOffset' name='weOffset' value='20.0' onchange='updateRoofConfig()')
+            br
+            span.tblabel snOffset:
+            span.uif
+              input.dut(type='text' id='snOffset' name='snOffset' value='20.0' onchange='updateRoofConfig()')
+            br
+            span.tblabel weSpan:
+            span.uif
+              input.dut(type='text' id='weSpan' name='weSpan' value='40.0' onchange='updateRoofConfig()')
+            br
+            span.tblabel snSpan:
+            span.uif
+              input.dut(type='text' id='snSpan' name='snSpan' value='40.0' onchange='updateRoofConfig()')
+            br
+            //-input(type='button' onclick='getNewRect()' value='New')
+            input(type='button' onclick='doDeploy()' value='DeployRect')
+            input(type='button' onclick='doDeployPolygon()' value='DeployPolygon')
+            input(type='button' onclick='doDelete()' value='Delete')
+            input(type='button' onclick='doSave()' value='Save')
+            //-input(type='button' onclick='newPolygon()' value='newPolygon')
+            //-input(type='button' onclick='turn2Left()' value='Turn2Left')
+            //-input(type='button' onclick='turn2Right()' value='Turn2Right')
+            br
+            p
+              prepare save info below to db:
+              br
+              or save each sensor's position.
+            textarea(id='saveLog' name='saveLog' rows='10' cols='30')
+        .col-md-10
+          input(id='pac-input' class='controls' type='text' placeholder='Search Box')
+          #map(style={width: '100%',height:'500px'})
