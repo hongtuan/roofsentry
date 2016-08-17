@@ -1,0 +1,16 @@
+//- add customer page
+extends layout
+
+block content
+  script(src='/javascripts/data_mgr.js')
+  .container
+    span add Customer
+    form.form-horizontal(role='form')
+      .form-group(style={width: '200px'})
+        label.control-label.col-sm-3(for='cname') Name:
+        .col-sm-9
+        input.form-control(type='text' style={width: '150px'} id='cname' placeholder='Enter name')
+      .form-group(style={width: '200px'})
+        label.control-label.col-sm-3(for='email') Email:
+        .col-sm-9
+        input.form-control(type='text' style={width: '150px'} id='email' placeholder='Enter name')

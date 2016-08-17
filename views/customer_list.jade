@@ -2,10 +2,26 @@
 extends layout
 
 block content
-  .container-fluid
-    .row
-      .col-md-12.text-center
-        p coustomer list page here:
-        p server Timeis #{stime}
-        p #{rows}
-        p #{len}
+  script(src='/javascripts/data_mgr.js')
+  .container
+    span #{title} 
+    input(type='button' onclick='addCustomer()' value='Add')
+    .table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th cid
+            th cname
+            th email
+            th telnum
+            th manager
+            th operate
+        tbody
+          each row in rows
+            tr
+              each v, k in row
+                td #{v}
+              td
+                input(type='button' onclick='doEdit()' value='Edit')
+                input(type='button' onclick='#' value='ViewLocation')
+                input(type='button' onclick='#' value='Delete')

@@ -43,13 +43,25 @@ module.exports = {
 		});
 	},
 	queryAll: function (req, res, next) {
+		//*
 		pool.getConnection(function(err, connection) {
 			connection.query($sql.queryAll, function(err, result) {
 				//jsonWrite(res, result);
-				res.data = result;
+				res.locals.len = result.length;
+				res.locals.rows = result;
+				console.log(result);
+				console.log('result.length='+result.length);
+				console.log('res.locals.rows.length='+res.locals.rows.length);
 				connection.release();
 				//return result;
 			});
-		});
+		});//*/
+		//var conn = pool.getConnection();
+		/*/var result = conn.query($sql.queryAll);
+		conn.query($sql.queryAll,function(err, result){
+			console.log('cb:result.length='+result.length);
+		});//*/
+		//console.log('result.length='+result.length);
+		console.log('queryAll called.');
 	}
 };
